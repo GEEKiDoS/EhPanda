@@ -408,8 +408,6 @@ private struct FrontPageSettingsSection: View {
                 L10n.Localizable.EhSettingView.Title.showSearchRangeIndicator,
                 isOn: $ehSetting.showSearchRangeIndicator
             )
-        } header: {
-            Text(L10n.Localizable.EhSettingView.Section.Title.showSearchRangeIndicator)
         }
         .textCase(nil)
    }

@@ -2,7 +2,7 @@ name: Build
 on: workflow_dispatch
 
 env:
-  APP_VERSION: '2.7.5'
+  APP_VERSION: '2.7.7'
   SCHEME_NAME: 'EhPanda'
   BUILDS_PATH: '/tmp/action-builds'
   PAYLOAD_PATH: '/tmp/action-builds/Payload'
