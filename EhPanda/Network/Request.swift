@@ -816,16 +816,26 @@ struct SubmitEhSettingChangesRequest: Request {
             "xu": ehSetting.excludedUploaders,
             "rc": String(ehSetting.searchResultCount.rawValue),
             "lt": String(ehSetting.thumbnailLoadTiming.rawValue),
-            "ts": String(ehSetting.thumbnailConfigSize.rawValue),
             "tr": String(ehSetting.thumbnailConfigRows.rawValue),
-            "tp": String(Int(ehSetting.thumbnailScaleFactor)),
+            "tp": String(Int(ehSetting.coverScaleFactor)),
             "vp": String(Int(ehSetting.viewportVirtualWidth)),
             "cs": String(ehSetting.commentsSortOrder.rawValue),
             "sc": String(ehSetting.commentVotesShowTiming.rawValue),
             "tb": String(ehSetting.tagsSortOrder.rawValue),
-            "pn": ehSetting.galleryShowPageNumbers ? "1" : "0",
+            "pn": String(ehSetting.galleryPageNumbering.rawValue),
             "apply": "Apply"
         ]
+
+        if ehSetting.enableGalleryThumbnailSelector {
+            params["xn_0"] = "on"
+        }
+
+        switch ehSetting.thumbnailConfigSize {
+        case .auto: params["ts"] = "0"
+        case .normal: params["ts"] = "1"
+        case .small: params["ts"] = "2"
+        default: break
+        }
 
         EhSetting.categoryNames.enumerated().forEach { index, name in
             params["ct_\(name)"] = ehSetting.disabledCategories[index] ? "1" : "0"
